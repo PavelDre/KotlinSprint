@@ -1,5 +1,7 @@
 package org.example.lesson_1
 
 fun main() {
-    println("Это решение 1 задачи из 1 урока")
+
+    val numberOfOrders: UByte = 75u
+    val feedbackUser : String = "Большое спасибо за поставленный товар!"
 }
