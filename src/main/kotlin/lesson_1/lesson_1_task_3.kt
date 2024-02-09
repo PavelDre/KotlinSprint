@@ -5,10 +5,11 @@ fun main() {
     val year: UShort = 1961u
     var hour: UByte = 9u
     var minute: UByte = 7u
+    val n = 2
 
     println(year)
-    println(hour)
-    println(minute)
+    println(hour.toString().padStart(n, '0'))
+    println(minute.toString().padStart(n, '0'))
 
     hour = 10u
     minute = 55u
