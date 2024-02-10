@@ -3,13 +3,14 @@ package org.example.lesson_1
 fun main() {
 
     val seconds: Short = 6480
-    val minutes = seconds/60
-    val hours = minutes/60
-    val n = 2
+    val minutes = seconds / SECONDS_IN_MINUTE
+    val hours = minutes / MINUTES_IN_HOUR
+    val resultHours = String.format("%02d", hours)
+    val resultMinutes = String.format("%02d", (minutes - hours * MINUTES_IN_HOUR))
+    val resultSeconds = String.format("%02d", (seconds - (minutes * SECONDS_IN_MINUTE)))
 
-    print(hours.toString().padStart(n, '0'))
-    print(":")
-    print((minutes - hours * 60).toString().padStart(n, '0'))
-    print(":")
-    print((seconds - (minutes * 60)).toString().padStart(n, '0'))
+    println("$resultHours:$resultMinutes:$resultSeconds")
 }
+
+const val SECONDS_IN_MINUTE = 60
+const val MINUTES_IN_HOUR = 60
