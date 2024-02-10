@@ -2,19 +2,18 @@ package org.example.lesson_1
 
 fun main() {
 
-    val year: UShort = 1961u
-    var hour: UByte = 9u
-    var minute: UByte = 7u
+    val year: Short = 1961
+    var hour: Byte = 9
+    var minute: Byte = 7
     val n = 2
 
     println(year)
     println(hour.toString().padStart(n, '0'))
     println(minute.toString().padStart(n, '0'))
 
-    hour = 10u
-    minute = 55u
+    hour = 10
+    minute = 55
 
-//    println("$hour:$minute")
     print(hour)
     print(":")
     print(minute)
