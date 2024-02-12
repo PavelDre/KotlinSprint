@@ -2,8 +2,7 @@ package org.example.lesson_2
 
 fun main() {
 
-    val averageRating: Double = (3 + 4 + 3 + 5) / 4.0
-//    val averageRating: Float = (3 + 4 + 3 + 5) / 4f
+    val averageRating = (3.0 + 4.0 + 3.0 + 5.0) / 4
 
-    println(averageRating)
+    println(averageRating.toFloat())
 }
