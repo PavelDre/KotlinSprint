@@ -2,13 +2,12 @@ package org.example.lesson_5
 
 fun main() {
 
+    val number1 = 3
+    val number2 = 6
+
     println("Для успешной авторизации, докажите что вы не бот.\n" +
-            "Напишите результат выражения: 3+б")
+            "Напишите результат выражения: $number1+$number2")
 
-    val result = readln().toInt()
-
-    if (result == RESULT_ANTI_BOT) println("Добро пожаловать!")
+    if (readln().toInt() == number1 + number2) println("Добро пожаловать!")
     else println("Доступ запрещен.")
 }
-
-const val RESULT_ANTI_BOT = 9
