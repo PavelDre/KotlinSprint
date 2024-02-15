@@ -3,20 +3,12 @@ package org.example.lesson_4
 fun main() {
 
     val dayOfTraining = 5
-    val indexDay = dayOfTraining % INDEX_DAY == 0
-
-    val exercisesHands = true
-    val exercisesLeg = false
-    val exercisesBack = false
-    val exercisesPress = true
+    val isEvenDay = dayOfTraining % 2 == 0
 
     println("""
-        $indexDay
-        Упражнения для рук:     ${exercisesHands != indexDay}
-        Упражнения для ног:     ${exercisesLeg != indexDay}
-        Упражнения для спины:   ${exercisesBack != indexDay}
-        Упражнения для пресса:  ${exercisesPress != indexDay}        
+        Упражнения для рук:     ${!isEvenDay}
+        Упражнения для ног:     $isEvenDay
+        Упражнения для спины:   $isEvenDay
+        Упражнения для пресса:  ${!isEvenDay}       
     """.trimIndent())
 }
-
-const val INDEX_DAY = 2
