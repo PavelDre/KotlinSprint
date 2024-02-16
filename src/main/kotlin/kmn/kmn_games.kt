@@ -55,4 +55,5 @@ fun game(nameUser: String) {
         println("$resultGaming\n\n Сыграем еще разок?\n1 - Да\n2 - Нет")
         activeGame = readln().toInt()
     } while (activeGame == 1)
+
 }
