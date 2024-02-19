@@ -1,47 +1,54 @@
 package org.example.game_kmn
 
+import java.util.concurrent.TimeUnit
+
 fun main() {
-    val nameUser = greeting()
-    game(nameUser)
+    val nameUser = toGreeting()
+    toGame(nameUser)
     println("Спасибо за игру, $nameUser! Удачи!")
 }
-fun greeting() :String {
-    println("Привет! Давай знакомиться!\nЯ компьютер, а теба как зовут?\n")
+
+fun toGreeting(): String {
+    println("Привет! Давай знакомиться!\nЯ компьютер, а теба как зовут?")
     val nameUser = readln()
-    Thread.sleep(1000)
-    if (nameUser == "Евгения" || nameUser == "Женя")
-        println("Паша просил тебе передать что он очень сильно тебя любит! :-*\n" +
-                "$nameUser, давай поиграем в игру?")
-    else  println("$nameUser, давай поиграем в игру?")
+    TimeUnit.SECONDS.sleep(1)
+
+    if (nameUser.equals("Евгения", ignoreCase = true) || nameUser.equals("Женя", ignoreCase = true))
+        println("Паша просил тебе передать что он очень сильно тебя любит! :-*")
+
+    println("$nameUser, давай поиграем в игру?")
     return nameUser
 }
-fun game(nameUser: String) {
-    var activeGame: Int
+
+fun toGame(nameUser: String) {
+
     do {
         println("1 - Камень\n2 - Ножницы\n3 - Бумага\nНапиши цифру, что ставишь ты?")
-        val resultUser = readln().toInt()
-        val resultPK = (1..3).random()
-        Thread.sleep(1000)
-        val resultGamesUser: String = when (resultUser) {
-            1 -> "$nameUser - Камень"
-            2 -> "$nameUser - Ножницы"
-            else -> "$nameUser - Бумага"
-        }
-        println(resultGamesUser)
-        val resultGamesPK: String = when (resultPK) {
-            1 -> "Компьютер - Камень"
-            2 -> "Компьютер - Ножницы"
-            else -> "Компьютер - Бумага"
-        }
-        println(resultGamesPK)
+        val resultUser = PossibleMove.entries[readln().toInt() - 1]
+        val resultPK = PossibleMove.entries.toTypedArray().random()
+
+        TimeUnit.SECONDS.sleep(1)
+
+        println("""
+            $nameUser - ${resultUser.title}
+            Компьютер - ${resultPK.title}
+        """.trimIndent()
+        )
+
         val resultGaming = when {
-            (resultUser == resultPK) -> "Боевая ничья!"
-            (resultUser == 3 && resultPK == 1) -> "Эх, ты победил(а)... Поздравляю!"
-            (resultUser == 1 && resultPK == 3) -> "Ура! Я победил!"
-            (resultUser > resultPK) -> "Ура! Я победил!"
+            (resultUser.id == resultPK.id) -> "Боевая ничья!"
+            (resultUser.id == 3 && resultPK.id == 1) -> "Эх, ты победил(а)... Поздравляю!"
+            (resultUser.id == 1 && resultPK.id == 3) -> "Ура! Я победил!"
+            (resultUser.id > resultPK.id) -> "Ура! Я победил!"
             else -> "Эх, ты победил(а)... Поздравляю!"
         }
         println("$resultGaming\n\n Сыграем еще разок?\n1 - Да\n2 - Нет")
-        activeGame = readln().toInt()
-    } while (activeGame == 1)
+
+    } while (readln().toInt() == 1)
+}
+
+enum class PossibleMove (val id: Int, val title: String) {
+    STONE(1, "Камень"),
+    SCISSORS(2, "Ножницы"),
+    PAPER(3, "Бумага"),
 }
